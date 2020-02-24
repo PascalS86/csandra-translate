@@ -1,0 +1,79 @@
+#app-title > img{
+    width:100%;
+}
+
+/* .loader {
+  border: 16px solid #f3f3f3; 
+  border-top: 16px solid #3498db; 
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} */
+
+.loader {
+  color:#fff;
+  margin-top: -100px;
+  margin-bottom: -50px;
+  margin-right: -22px;
+  margin-left: -22px;
+  height: 100vh;
+  background-color: rgba(24, 142, 187, 0.5);
+}
+
+.checked {
+    color: orange;
+  }
+.top-bar{
+    margin-right: -10px;
+    margin-left: -10px;
+}
+#nav{
+  height:100vh;
+}
+.dashboard{
+  margin-left:-10px !important;
+  margin-right:-10px !important;
+}
+.jumbotron-odi-hero{
+  padding: 0rem 0rem;
+   position: relative;
+   max-width: 100%;
+   
+   background-color: rgba(24,142,187,0.3);
+  }
+  .jumbotron-odi-dark{
+   max-width: 100%;
+   padding: 0px;
+   
+  }
+  
+  .jumbotron-overlay {
+   height:100%;
+   padding: 100px 0;
+   color:#fff;
+   
+  }
+  
+  .btn-overlay{
+    color:#fff;
+    
+   }
+  .jumbotron-padding{
+   padding-top: 6rem;
+   
+  }
+
+  .signin-content{
+    height: 100vh;
+    background: url(../assets/background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }

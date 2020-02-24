@@ -1,0 +1,18 @@
+﻿@inherits LayoutComponentBase
+@using Radzen.Blazor
+
+<RadzenDialog />
+
+<div class="col">
+<div class="top-bar col-xs-12 bg-dark d-md-none" id="top-bar"></div>
+    <div class="row">
+        <NavMenu />
+
+
+        <main class="col-xs signin-content">
+            @Body
+        </main>
+    </div>
+</div>
+
+
