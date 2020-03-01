@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +12,19 @@ namespace csandra.translate.Services{
     public class TranslatorService{
         private readonly string subscriptionKey = "03a527c0e997496493e3de6a7294669a";//"@@@SUBSCRIPTION_KEY@@@";
         private readonly string endpoint = "https://csandra-translate.cognitiveservices.azure.com/sts/v1.0/issuetoken";//"@@@ENDPOINT@@@";
-
+        protected static List<TranslationItem> Items {get;private set;}
         public async Task TranslateTextRequest(string inputText, string targetLang)
         {
+            //TODO: check Request Repos
             string route = $"/translate?api-version=3.0&to={targetLang}";
-    
+            if(Items != null && Items.Any(i=> i.LanguageItems.Any(k=> k.Text.ToLower().Trim() == inputText.ToLower().Trim()))){
+                var langItem = Items.FirstOrDefault(i=> i.LanguageItems.Any(k=> k.Text.ToLower().Trim() == inputText.ToLower().Trim()));
+                if(langItem.LanguageItems.Any(c=> c.To == targetLang)){
+                    var txt = langItem.LanguageItems.FirstOrDefault(c=> c.To == targetLang);
+                    Console.WriteLine(txt.Text);
+                    return;
+                }
+            }
             object[] body = new object[] { new { Text = inputText } };
             var requestBody = JsonConvert.SerializeObject(body);
             using (var client = new HttpClient())
@@ -47,5 +57,9 @@ namespace csandra.translate.Services{
                     }
                 }
         }
+    }
+
+    public class TranslationItem{
+        public List<Translation> LanguageItems { get; set; }
     }
 }
