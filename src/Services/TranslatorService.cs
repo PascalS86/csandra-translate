@@ -44,6 +44,14 @@ namespace csandra.translate.Services{
                     string result = await response.Content.ReadAsStringAsync();
                     // Deserialize the response using the classes created earlier.
                     TranslationResult[] deserializedOutput = JsonConvert.DeserializeObject<TranslationResult[]>(result);
+                    var langItem = new TranslationItem(){
+                        LanguageItems = new List<Translation>(){
+                            new Translation(){
+                                Text = inputText,
+                                To = targetLang
+                            }
+                        }
+                    };
                     // Iterate over the deserialized results.
                     foreach (TranslationResult o in deserializedOutput)
                     {
@@ -52,9 +60,11 @@ namespace csandra.translate.Services{
                         // Iterate over the results and print each translation.
                         foreach (Translation t in o.Translations)
                         {
+                            langItem.LanguageItems.Add(t);
                             Console.WriteLine("Translated to {0}: {1}", t.To, t.Text);
                         }
                     }
+                    Items.Add(langItem);
                 }
         }
     }
